@@ -7,8 +7,8 @@ import winsound
 class RainbowTicTacToePro:
     def __init__(self, root):
         self.root = root
-        self.root.title("Tic-Tac-Toe: Ultimate Edition")
-        self.root.geometry("450x720")
+        self.root.title("☠︎Tic-Tac-Toe☠︎︎")
+        self.root.geometry("450x750")
         self.root.resizable(False, False)
         
         self.LOSER_URL = "https://youtu.be/7QHVszlncmM"
@@ -84,8 +84,8 @@ class RainbowTicTacToePro:
         self.clear_screen()
         self.canvas = tk.Canvas(self.root, width=450, height=720, highlightthickness=0); self.canvas.pack()
         self.draw_rainbow_bg()
-        self.canvas.create_text(225, 150, text="RAINBOW\nBRUTALITY", font=('Arial Rounded MT Bold', 40, 'bold'), fill="white", justify="center")
-        f = tk.Frame(self.root, bg="#1a1a1a", bd=5, relief="ridge"); self.canvas.create_window(225, 400, window=f)
+        self.canvas.create_text(225, 150, text="𝕿RAINBOW𝕿\nTIC-TAC-TOE\n𝕿BRUTALITY𝕿\n☠", font=('Arial Rounded MT Bold', 40, 'bold'), fill="white", justify="center")
+        f = tk.Frame(self.root, bg="#000000", bd=5, relief="ridge"); self.canvas.create_window(225, 400, window=f)
         tk.Button(f, text="PvE (Hard)", font=('Segoe UI', 14, 'bold'), width=18, bg="#333", fg="white", command=self.start_pve).pack(pady=10)
         tk.Button(f, text="PvP (Local)", font=('Segoe UI', 14, 'bold'), width=18, bg="#333", fg="white", command=self.setup_pvp_names).pack(pady=10)
         tk.Button(f, text="Quit", font=('Segoe UI', 14, 'bold'), width=18, bg="#500", fg="white", command=self.root.quit).pack(pady=10)
