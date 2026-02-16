@@ -1,0 +1,142 @@
+a1 = "_"
+a2 = "_"
+a3 = "_"
+b1 = "_"
+b2 = "_"
+b3 = "_"
+c1 = "_"
+c2 = "_"
+c3 = "_"
+
+marked_list = []
+xWin = False
+game_end = False
+xturn = True
+oturn = False
+
+def print_board():
+    global a1, a2, a3, b1, b2, b3, c1, c2, c3
+    board_str = f'a |{a1}|{a2}|{a3}|\n' \
+                f'b |{b1}|{b2}|{b3}|\n' \
+                f'c |{c1}|{c2}|{c3}|\n' \
+                '   1 2 3'
+    print(board_str)
+
+def make_move(m, player_mark):
+    global a1, a2, a3, b1, b2, b3, c1, c2, c3, marked_list, game_end
+
+    if m in marked_list:
+        print("nah uh, bawal yarn")
+        return False 
+
+    if not ('a1' <= m <= 'c3'):
+        print("no boi")
+        return False 
+
+    if game_end:
+        return False 
+
+    if m == "a1":
+        global a1
+        a1 = player_mark
+    elif m == "a2":
+        global a2
+        a2 = player_mark
+    elif m == "a3":
+        global a3
+        a3 = player_mark
+    elif m == "b1":
+        global b1
+        b1 = player_mark
+    elif m == "b2":
+        global b2
+        b2 = player_mark
+    elif m == "b3":
+        global b3
+        b3 = player_mark
+    elif m == "c1":
+        global c1
+        c1 = player_mark
+    elif m == "c2":
+        global c2
+        c2 = player_mark
+    elif m == "c3":
+        global c3
+        c3 = player_mark
+    else:
+        print("ohulul")
+        return False
+
+    marked_list.append(m)
+    return True 
+
+
+def check_winner():
+    global a1, a2, a3, b1, b2, b3, c1, c2, c3, game_end
+
+    if a1 == a2 == a3 != "_":
+        game_end = True
+        return a1
+    if b1 == b2 == b3 != "_":
+        game_end = True
+        return b1
+    if c1 == c2 == c3 != "_":
+        game_end = True
+        return c1
+
+
+    if a1 == b1 == c1 != "_":
+        game_end = True
+        return a1
+    if a2 == b2 == c2 != "_":
+        game_end = True
+        return a2
+    if a3 == b3 == c3 != "_":
+        game_end = True
+        return a3
+
+    if a1 == b2 == c3 != "_":
+        game_end = True
+        return a1
+    if a3 == b2 == c1 != "_":
+        game_end = True
+        return a3
+
+    if all(pos != "_" for pos in [a1, a2, a3, b1, b2, b3, c1, c2, c3]):
+        game_end = True
+        return "Draw"
+
+    return None
+
+def switch_turn():
+    global xturn, oturn
+    xturn = not xturn
+    oturn = not oturn
+
+while not game_end:
+    print_board()
+
+    if xturn:
+        move = input("Player X choose (a1-c3): ")
+        if make_move(move, "x"):
+            winner = check_winner()
+            if winner:
+                print_board()
+                if winner == "Draw":
+                    print("It's a Draw!")
+                else:
+                    print(f"Player {winner.upper()} wins!")
+                break
+            switch_turn()
+    else:
+        move = input("Player O choose (a1-c3): ")
+        if make_move(move, "o"):
+            winner = check_winner()
+            if winner:
+                print_board()
+                if winner == "Draw":
+                    print("It's a draw sayang lng oras")
+                else:
+                    print(f"panalo si bading{winner.upper()}!")
+                break
+            switch_turn()
